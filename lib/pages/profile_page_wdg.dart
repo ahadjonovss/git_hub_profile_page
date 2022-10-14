@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:git_hub_api/models/infos_model.dart';
 
-Widget profilePage(){
+Widget profilePage(AccountInfos? info){
   return SafeArea(
     child: Container(
       child: Column(
@@ -34,22 +35,22 @@ Widget profilePage(){
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           image: DecorationImage(
-                            image: NetworkImage("https://i.pravatar.cc/300"),
+                            image: NetworkImage(info!.avatar_url),
                             fit: BoxFit.cover
                           )
                         ),
-                      ),
+                      ), //avatar
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
 
-                              child: Text("Samandar Ahadjonov",style: TextStyle(fontSize: 24,fontWeight: FontWeight.w700),
+                              child: Text(info.name??'no data',style: TextStyle(fontSize: 24,fontWeight: FontWeight.w700),
                               ),
                             margin: EdgeInsets.only(left: 12,top: 12),
                           ), //name
                           Container(
-                            child: Text("ahadjonovss",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,color: Colors.grey),
+                            child: Text(info.login??'no data',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,color: Colors.grey),
                             ),
                             margin: EdgeInsets.only(left: 12),
                           ), //username
@@ -60,7 +61,7 @@ Widget profilePage(){
                   ),
                 ),
                 SizedBox(height: 18,),
-                Text("Software Developer",style: TextStyle(fontSize: 20),),
+                Text(info.bio??"no bio",style: TextStyle(fontSize: 20),),
                 SizedBox(height: 12,),
                 Container(
                   child: Row(
@@ -69,7 +70,7 @@ Widget profilePage(){
                         children: [
                           Icon(Icons.work,color: Colors.grey,),
                           SizedBox(width: 4,),
-                          Text("Najot Ta'lim",style: TextStyle(fontSize: 18),)
+                          Text(info.company??"no data",style: TextStyle(fontSize: 18),)
                         ],
                       ), //word
                       SizedBox(width: 8,),
@@ -77,7 +78,7 @@ Widget profilePage(){
                         children: [
                           Icon(Icons.location_on,color: Colors.grey,),
                           SizedBox(width: 4,),
-                          Text("Tashkent",style: TextStyle(fontSize: 18),)
+                          Text(info.location??'no data',style: TextStyle(fontSize: 18),)
                         ],
                       ), //city
                     ],
@@ -88,7 +89,7 @@ Widget profilePage(){
                   children: [
                     Icon(Icons.insert_link,color: Colors.grey,),
                     SizedBox(width: 4,),
-                    Text("https://nmadir.comsomdom",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                    Text(info.blog??"no data",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                   ],
                 ),
                 SizedBox(height: 12,),//link
@@ -96,7 +97,7 @@ Widget profilePage(){
                   children: [
                     Icon(Icons.facebook,color: Colors.grey,),
                     SizedBox(width: 4,),
-                    Text("@ahadjonovss",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                    Text(info.twitter_username??'no data',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                   ],
                 ), //twitter
                 SizedBox(height: 12,),
@@ -104,7 +105,7 @@ Widget profilePage(){
                   children: [
                     Icon(Icons.person,color: Colors.grey,),
                     SizedBox(width: 4,),
-                    Text("1 follower",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                    Text("${info.followers??'no data'} follower",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                   ],
                 )
               ],
